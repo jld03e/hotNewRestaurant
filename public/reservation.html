@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation</title>
+    <!-- Latest compiled and minified CSS & JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="jumbotron justify-center text-center col-12">
+                <h1 class="display-4 text-center">
+                    <i class="fas fa-fire"></i>&nbsp Hot Restaurant</h1>
+                <p class="lead text-center">We only have 5 tables! Book your seat before they all are gone!</p>
+                <hr class="my-4">
+
+                <a class="btn btn-primary btn-lg mx-auto" href="index.html" role="button">
+                    <i class="fas fa-home"></i> &nbsp Home</a>
+                <a class="btn btn-danger btn-lg mx-auto" href="tables.html" role="button">
+                    <i class="fas fa-utensils"></i> &nbsp Tables</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <strong>Enter Your Information</strong>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <form role="form">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control" id="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input type="text" class="form-control" id="phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="partyOf">Party of</label>
+                                <input type="text" class="form-control" id="partyOf">
+                            </div>
+                            <div class="form-group">
+                                <label for="time">Desire Time</label>
+                                <input type="text" class="form-control" id="time">
+                            </div>
+                        </form>
+                        <br>
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-primary btn-md" id="add-btn">
+                                <span class="fa fa-fire"></span>&nbsp Reserve</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $("#add-btn").on("click", function (event) {
+            event.preventDefault();
+
+            var newReservation = {
+                name: $("#name").val().trim(),
+                email: $("#email").val().trim(),
+                phone: $("#phone").val().trim(),
+                partyOf: $("#partyOf").val().trim(),
+                time: $("time").val().trim()
+            };
+
+            $.post("/api/tables", newReservation)
+                .then(function (data) {
+                    console.log(data);
+                    alert("Adding Reservation...");
+                });
+
+        });
+    </script>
+</body>
+</html>
