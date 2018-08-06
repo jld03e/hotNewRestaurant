@@ -1,4 +1,4 @@
-var table = [
+var tableArray = [
 
     {
         routeName: "frank",
@@ -9,15 +9,14 @@ var table = [
         time: "7:00pm"
     },
     {
-        routeName: "luis",
-        name: "Luis",
-        email: "luis@gonzalez.com",
-        phone: "786-555-5555",
-        partyOf: "3",
-        time: "7:00pm"
+        routeName: "jason",
+        name: "Jason",
+        email: "voorhees@clake.com",
+        phone: "305-555-1313",
+        partyOf: "4",
+        time: "12:00am"
     }
 ];
 
-module.exports = {
-    table
-  };
+module.exports = tableArray;
+

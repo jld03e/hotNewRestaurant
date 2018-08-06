@@ -1,4 +1,4 @@
-var waitList = [
+var waitlistArray = [
 
     {
         routeName: "john",
@@ -7,17 +7,7 @@ var waitList = [
         phone: "954-555-9903",
         partyOf: "4",
         time: "7:00pm"
-    },
-    {
-        routeName: "john",
-        name: "John",
-        email: "little@john.com",
-        phone: "561-555-5555",
-        partyOf: "3",
-        time: "7:00pm"
     }
 ];
 
-module.exports = {
-    waitList
-  };
+module.exports = waitlistArray;

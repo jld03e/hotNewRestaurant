@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Star Wars - Express</title>
+    <title>Hot New Restaurant</title>
     <!-- Latest compiled and minified CSS & JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
@@ -23,9 +23,9 @@
                 <p class="lead text-center">We only have 5 tables! Book your seat before they all are gone!</p>
                 <hr class="my-4">
 
-                <a class="btn btn-primary btn-lg mx-auto" href="index.html" role="button">
+                <a class="btn btn-primary btn-lg mx-auto" href="/index" role="button">
                     <i class="fas fa-home"></i> &nbsp Home</a>
-                <a class="btn btn-danger btn-lg mx-auto" href="reserve.html" role="button">
+                <a class="btn btn-danger btn-lg mx-auto" href="/reservation" role="button">
                     <i class="fas fa-table"></i> &nbsp Reserve</a>
             </div>
         </div>
@@ -36,9 +36,9 @@
 
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">
+                        <h2 class="panel-title">
                             <strong>Tables</strong>
-                        </h3>
+                        </h2>
                     </div>
                     <div class="panel-body" id="well-section">
 
@@ -46,22 +46,58 @@
                 </div>
             </div>
         </div>
+
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">
+                            <strong>Wait List</strong>
+                        </h2>
+                    </div>
+                    <div class="panel-body" id="wait-section">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <script type="text/javascript">
 
-        $.get("/api/tables", function (data) {
+        $.get("/api/table", function (data) {
             for (var i = 0; i < data.length; i++) {
                 var wellSection = $("<div>");
                 wellSection.addClass("well");
                 wellSection.attr("id", "table-well-" + i);
                 $("#well-section").append(wellSection);
 
-                $("#table-well-" + i).append("<h2>" + data[i].name + "</h2>");
-                $("#table-well-" + i).append("<h3>Email: " + data[i].email + "</h3>");
-                $("#table-well-" + i).append("<h3>Phone: " + data[i].phone + "</h3>");
-                $("#table-well-" + i).append("<h3>Party Of: " + data[i].partyOf + "</h3>");
-                $("#table-well-" + i).append("<h3>Time: " + data[i].time + "</h3>");
+                var tableNumber = i + 1;
+
+                $("#table-well-" + i).append("<h4> Table Number : " + tableNumber  + "</h4>");
+                $("#table-well-" + i).append("<h4>" + data[i].name + "</h4>");
+                $("#table-well-" + i).append("<h4>Email: " + data[i].email + "</h4>");
+                $("#table-well-" + i).append("<br>");
+
+            }
+        });
+
+        $.get("/api/waitlist", function (wLdata) {
+            for (var j = 0; j < wLdata.length; j++) {
+                var waitSection = $("<div>");
+                waitSection.addClass("wait");
+                waitSection.attr("id", "wait-well-" + j);
+                $("#wait-section").append(waitSection);
+
+                var waitlistNumber = j + 1;
+
+                $("#wait-well-" + j).append("<h4> Wait List Number : " + waitlistNumber  + "</h4>");
+                $("#wait-well-" + j).append("<h4>" + wLdata[j].name + "</h4>");
+                $("#wait-well-" + j).append("<h4>Email: " + wLdata[j].email + "</h4>");
+                $("#wait-well-" + j).append("<br>");
 
             }
         });
