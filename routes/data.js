@@ -17,16 +17,17 @@ app.get("/api/waitlist", function(req, res) {
 
 
 // Create New reservations - takes in JSON input
-app.post("/api/reservation", function(req, res) {
+app.post("/api/table", function(req, res) {
     // req.body hosts is equal to the JSON post sent from the user
     // This works because of our body-parser middleware
-    var newReservation = req.body;
-  
-    console.log(newReservation);
-  
-    table.push(newReservation);
-  
-    res.json(newReservation);
+    if (tableData.length < 5) {
+        tableData.push(req.body);
+        res.json(true);
+    }
+    else {
+        waitlistData.push(req.body);
+        res.json(false);
+    }
   });
 
-    };
+};

@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Reservation</title>
-    <!-- Latest compiled and minified CSS & JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
         crossorigin="anonymous">
@@ -70,6 +69,7 @@
     </div>
 
     <script type="text/javascript">
+
         $("#add-btn").on("click", function (event) {
             event.preventDefault();
 
@@ -81,10 +81,22 @@
                 time: $("#time").val().trim()
             };
 
-            $.post("/api/table", newReservation)
-                .then(function (data) {
-                    console.log(newReservation);
-                    alert("Adding Reservation...");
+            console.log(newReservation);
+
+            $.post("/api/table", newReservation,
+                function(data) {
+                    if (data) {
+                        alert("Yay! You are totally booked!");
+                    } else {
+                        alert("Wait List Fo YOU!");
+                    }
+                    console.log(data);
+
+                $("#name").val("");
+                $("#email").val("");
+                $("#phone").val("");
+                $("#partyOf").val("");
+                $("#time").val("");
                 });
 
         });
